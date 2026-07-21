@@ -2,9 +2,11 @@
 
 @theme inline {
   --color-primary: #1B3A5C;
-  --color-primary-light: #F0F4F8;
+  --color-primary-dark: #0F1E34;
+  --color-primary-light: #E8F0F8;
   --color-accent: #F07D2B;
-  --color-accent-light: #FDE8D8;
+  --color-accent-dark: #E06D1B;
+  --color-accent-light: #FFF0E0;
   --color-black: #111111;
   --color-gray-600: #4A5568;
   --font-sans: var(--font-inter), 'Inter', sans-serif;

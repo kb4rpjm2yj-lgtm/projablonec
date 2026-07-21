@@ -24,17 +24,26 @@ export default function CandidateCard({
       transition={{ duration: 0.5, delay: index * 0.15 }}
       className="flex flex-col items-center text-center group"
     >
-      <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden mb-4 ring-4 ring-primary-light group-hover:ring-accent transition-all duration-300">
-        <Image
-          src={img}
-          alt={name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 160px, 192px"
-        />
+      {/* Foto s oranžovým lemem */}
+      <div className="relative mb-5">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent to-accent-dark opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-105" />
+        <div className="relative w-40 h-40 md:w-44 md:h-44 rounded-full overflow-hidden ring-2 ring-primary-light group-hover:ring-4 group-hover:ring-accent transition-all duration-300 shadow-lg">
+          <Image
+            src={img}
+            alt={name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 160px, 176px"
+          />
+        </div>
       </div>
-      <h3 className="text-xl font-bold text-accent">{name}</h3>
-      <p className="text-sm text-gray-600 mt-1">{role}</p>
+      <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">
+        {name}
+      </h3>
+      <div className="w-8 h-0.5 bg-accent/40 my-2" />
+      <p className="text-sm text-gray-500 uppercase tracking-wider font-medium">
+        {role}
+      </p>
     </motion.div>
   );
 }
