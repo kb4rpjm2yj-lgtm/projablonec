@@ -1,65 +1,126 @@
-import Image from "next/image";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import SectionWrapper from "@/components/SectionWrapper";
+import ProgramCard from "@/components/ProgramCard";
+import CandidateCard from "@/components/CandidateCard";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import { ABOUT, PROGRAMS, CANDIDATES, CONTACT, SITE } from "@/lib/constants";
+import { Mail } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Header />
+      <main>
+        {/* HERO */}
+        <HeroSection />
+
+        {/* O NÁS */}
+        <SectionWrapper id="o-nas">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+              {ABOUT.title}
+            </h2>
+            <div className="space-y-4">
+              {ABOUT.body.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-gray-700 text-lg leading-relaxed"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        </SectionWrapper>
+
+        {/* PROGRAM */}
+        <SectionWrapper id="program" dark>
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-accent uppercase tracking-widest">
+              Náš program
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2">
+              Co chceme změnit
+            </h2>
+            <p className="text-gray-600 mt-3 max-w-2xl mx-auto">
+              Čtyři pilíře, na kterých stavíme naši vizi pro Jablonec.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {PROGRAMS.map((program, i) => (
+              <ProgramCard key={i} program={program} index={i} />
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* KANDIDÁTI */}
+        <SectionWrapper id="kandidati">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-accent uppercase tracking-widest">
+              Náš tým
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mt-2">
+              Kdo za tím stojí
+            </h2>
+            <p className="text-gray-600 mt-3">
+              Poznejte lidi, kteří chtějí změnit Jablonec k lepšímu.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+            {CANDIDATES.map((candidate, i) => (
+              <CandidateCard
+                key={i}
+                name={candidate.name}
+                role={candidate.role}
+                img={candidate.img}
+                index={i}
+              />
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* KONTAKT / PODPOŘ NÁS */}
+        <SectionWrapper id="kontakt" dark>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              {CONTACT.title}
+            </h2>
+            <p className="text-gray-700 text-lg mb-8">{CONTACT.text}</p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+              <a
+                href={`mailto:${SITE.email}`}
+                className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:shadow-lg"
+              >
+                <Mail size={20} />
+                {SITE.email}
+              </a>
+            </div>
+
+            <div className="flex items-center justify-center gap-6 text-gray-600">
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 24 24" width={18} height={18} fill="#1B3A5C" className="text-primary">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+                {SITE.facebook}
+              </span>
+              <span className="flex items-center gap-2">
+                <svg viewBox="0 0 24 24" width={18} height={18} fill="#F07D2B" className="text-accent">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="5" />
+                  <circle cx="17.5" cy="6.5" r="1.5" />
+                </svg>
+                {SITE.instagram}
+              </span>
+            </div>
+          </div>
+        </SectionWrapper>
       </main>
-    </div>
+
+      <Footer />
+      <ScrollToTop />
+    </>
   );
 }
